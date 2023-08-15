@@ -5,8 +5,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 # from .models import related models
 # from .restapis import related methods
 from .models import CarModel
-from .restapis import get_dealers_from_cf, get_request
-from .restapis import get_dealer_reviews_from_cf
+from .restapis import  get_dealers_from_cf,get_dealer_reviews_from_cf, get_dealer_by_id_from_cf
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
@@ -108,14 +107,14 @@ def get_dealerships(request):
 # Create a `get_dealer_details` view to render the reviews of a dealer
 # def get_dealer_details(request, dealer_id):
 # ...
-def get_dealer_details(request, dealer_id):
+def get_dealer_details(request, id):
     if request.method == "GET":
         context = {}
-        dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/6318d04b-9e9b-454b-af0e-0163e76bf484/dealership-package/get-dealership"
-        dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/75bcf489-4367-4f44-bc60-f2601af99c15/dealership-package/get-dealership"
+        dealer = get_dealer_by_id_from_cf(url, id)
         context["dealer"] = dealer
     
-        review_url = "https://us-south.functions.appdomain.cloud/api/v1/web/6318d04b-9e9b-454b-af0e-0163e76bf484/dealership-package/get-review"
+        review_url = "https://us-south.functions.appdomain.cloud/api/v1/web/75bcf489-4367-4f44-bc60-f2601af99c15/dealership-package/get-reviews"
         reviews = get_dealer_reviews_from_cf(review_url, id=id)
         print(reviews)
         context["reviews"] = reviews

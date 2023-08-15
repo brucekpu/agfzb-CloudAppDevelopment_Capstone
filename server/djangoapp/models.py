@@ -10,12 +10,11 @@ from django.utils.timezone import now
 # - Any other fields you would like to include in car make model
 # - __str__ method to print a car make object
 class CarMake(models.Model):
-    name = models.CharField(null=False, max_length=30, default='Ford')
-    description = models.CharField(null=False, max_length=30, default='It is cools')
-    
+    name = models.CharField(null=False, max_length=100, default='Make')
+    description = models.CharField(max_length=500)
+
     def __str__(self):
-        return "Car make:" + self.name + \
-            " description is " + self.description
+        return "Name: " + self.name
 
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
@@ -27,17 +26,31 @@ class CarMake(models.Model):
 # - Any other fields you would like to include in car model
 # - __str__ method to print a car make object
 class CarModel(models.Model):
-    car_make_model = models.ForeignKey(CarMake, on_delete=models.CASCADE)
-    name = models.CharField(null=False, max_length=30, default='F150')
-    dealer_ID = models.IntegerField
-    car_type = models.CharField(null=False, max_length=30, default='1')
-    year = models.DateField()
+    id = models.IntegerField(default=1,primary_key=True)
+    name = models.CharField(null=False, max_length=100, default='Car')
+   
+    SEDAN = 'Sedan'
+    SUV = 'SUV'
+    WAGON = 'Wagon'
+    MINIVAN = 'Minivan'
+    CAR_TYPES = [
+        (SEDAN, 'Sedan'),
+        (SUV, 'SUV'),
+        (WAGON, 'Wagon'),
+        (MINIVAN, 'Minivan')
+    ]
+
+    type = models.CharField(
+        null=False,
+        max_length=50,
+        choices=CAR_TYPES,
+        default=SEDAN
+    )
+    make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
+    year = models.DateField(default=now)
 
     def __str__(self):
-        return "name: " + self.name + ", " + \
-               "dealer_ID: " + self.dealer_ID + ", " + \
-               "car type: " + str(self.car_type) + ", " + \
-               "year: " + str(self.year)
+        return "Name: " + self.name
 
 
 
