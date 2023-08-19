@@ -22,13 +22,13 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Best Cars dealership</a>
             </div>
-
-            <ul class="navbar-nav">
-                <li><a href="/djangoapp/">Home</a></li>
-                <li><a href="/djangoapp/about/">About</a></li>
-                <li><a href="/djangoapp/contact/">Contact us</a></li>
+            <!--Displaying a horizontal list for the links to other pages-->
+            <ul class="navbar-header">
+                <li class="navbar-brand"><a href="/djangoapp/">Home</a></li>
+                <li class="navbar-brand"><a href="/djangoapp/about/">About</a></li>
+                <li class="navbar-brand"><a href="/djangoapp/contact/">Contact us</a></li>
             </ul>
-
+            <!--user authertor-->
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li>

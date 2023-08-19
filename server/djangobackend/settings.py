@@ -27,9 +27,9 @@ DEBUG = True
 
 APPEND_SLASH = True
 
-ALLOWED_HOSTS = ["localhost"]
-
-
+#ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ['localhost', 'localhost:8000', 'https://u123brucepha-8000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/']
+CSRF_TRUSTED_ORIGINS = ['https://u123brucepha-8000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/']
 # Application definition
 
 INSTALLED_APPS = [
@@ -125,3 +125,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
 MEDIA_URL = '/media/'
+
+
+
+
