@@ -28,7 +28,7 @@
                 <li class="navbar-brand"><a href="/djangoapp/about/">About</a></li>
                 <li class="navbar-brand"><a href="/djangoapp/contact/">Contact us</a></li>
             </ul>
-            <!--user authertor-->
+            <!--user authentication-->
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li>
@@ -52,6 +52,7 @@
         </div>
     </nav>
     <!--Add a dealer table here -->
+    <!--using bootstrap-->
     <table class="table" id="table" data-filter-control="true">
         <thead>
             <tr>

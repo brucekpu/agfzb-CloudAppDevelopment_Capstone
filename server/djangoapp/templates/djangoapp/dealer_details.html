@@ -75,7 +75,8 @@
                 {% endif %}
             
                 <h3>Reviews for <b>{{dealer.full_name}}</b></h3>
-            
+                <!--Using the sentiment recived from the Watson NLU display the emoji with it(positive,negative,neutral)-->
+                <!--Displaying the reviews in card form using container and class card-->
                 <div class="container">
                     <div class="card-columns">
                         {% for review in reviews %}

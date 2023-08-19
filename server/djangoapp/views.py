@@ -125,17 +125,20 @@ def get_dealer_details(request, id):
 # def add_review(request, dealer_id):
 # ...
 def add_review(request, id):
+    #only if the user is authenticated, can you post a review
     if request.user.is_authenticated:
         context = {}
         dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/6318d04b-9e9b-454b-af0e-0163e76bf484/dealership-package/get-dealership"
         dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
         context["dealer"] = dealer
+        #displaying all the reviews for the dealership with the specific ID
         if request.method == "GET":
             cars = CarModel.objects.all()
             context["cars"] = cars
             print(context)
             return render(request, 'djangoapp/add_review.html', context)
         
+        #creating a review
         if request.method == "POST":
             review = {}
             review["name"] = request.user.first_name + " " + request.user.last_name
@@ -157,5 +160,6 @@ def add_review(request, id):
             json_payload = { "review": review }
             post_request(post_url, json_payload, id=id)
             return redirect("djangoapp:dealer_details", id=id)
+        #else if not authenticated return back
     else:
         return redirect("/djangoapp/login")

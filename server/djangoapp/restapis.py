@@ -16,6 +16,7 @@ def get_request(url, **kwargs):
     api_key = kwargs.get("api_key")
     print("GET from {} ".format(url))
     try:
+         # Call get method of requests library with URL and parameters
         if api_key:
             params = dict()
             params["text"] = kwargs["text"]
@@ -66,7 +67,6 @@ def get_dealers_from_cf(url, **kwargs):
 
     if json_result:
         # Get the row list in JSON as dealers
-        print("63 - RA",json_result)
         dealers = json_result
         # For each dealer object
         for dealer in dealers:
@@ -114,7 +114,7 @@ def get_dealer_reviews_from_cf(url, **kwargs):
             
             #sending the parse data into watson NLU so it can analyze the tone
             sentiment = analyze_review_sentiments(review_obj.review)
-            print(sentiment)
+            #print(sentiment)
             review_obj.sentiment = sentiment
             results.append(review_obj)
 
